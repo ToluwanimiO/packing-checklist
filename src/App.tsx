@@ -36,6 +36,15 @@ export default function App() {
     return newTrip.id;
   }
 
+  function addItems(tripId: string, items: Item[]) {
+    setData((current)=>({
+      ...current,
+      trips:current.trips.map((trip)=>{
+        return trip.id == tripId ? {...trip,items:[...trip.items,...items]} : trip
+      })
+    }))
+  }
+
   function deleteTrip(tripId: string) {
     setData((current) => ({
       ...current,
@@ -242,6 +251,8 @@ export default function App() {
               onToggleDefault={toggleDefault}
               onDeleteItem={deleteItem}
               onToggleAutoDefaults={setAutoAddToDefaults}
+              onAddItems={addItems}
+              onDeleteTrip={deleteTrip}
             />
           }
         />
