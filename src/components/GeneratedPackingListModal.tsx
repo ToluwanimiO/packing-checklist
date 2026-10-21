@@ -2,40 +2,38 @@ import { useState } from "react";
 import { type Item } from "../types";
 
 type Props = {
-    items: Item[];
+  items: Item[];
   onClose: () => void;
   onSave: (selectedItems: Item[]) => void;
+  message: string;
 };
 
 export default function GeneratedPackingListModal({
   items,
   onClose,
   onSave,
-}:Props) {
+  message,
+}: Props) {
   const [selectedItems, setSelectedItems] = useState(() =>
-    items.map((item) => item.id)
+    items.map((item) => item.id),
   );
 
   const allSelected = selectedItems.length === items.length;
 
-  const toggleItem = (id:string) => {
+  const toggleItem = (id: string) => {
     setSelectedItems((current) =>
       current.includes(id)
         ? current.filter((itemId) => itemId !== id)
-        : [...current, id]
+        : [...current, id],
     );
   };
 
   const toggleAll = () => {
-    setSelectedItems(
-      allSelected ? [] : items.map((item) => item.id)
-    );
+    setSelectedItems(allSelected ? [] : items.map((item) => item.id));
   };
 
   const handleSave = () => {
-    const selected = items.filter((item) =>
-      selectedItems.includes(item.id)
-    );
+    const selected = items.filter((item) => selectedItems.includes(item.id));
 
     onSave(selected);
   };
@@ -91,8 +89,8 @@ export default function GeneratedPackingListModal({
 
         {/* Instructions */}
         <div className="px-5 pt-4 sm:px-6">
-          <div className="flex gap-3 rounded-xl border border-indigo-100 bg-indigo-50/70 p-3.5">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white text-indigo-600 shadow-sm">
+          <div className="flex gap-3 rounded-xl border border-gray-100 bg-gray-50/70 p-3.5">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white text-gray-600 shadow-sm">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="19"
@@ -110,9 +108,9 @@ export default function GeneratedPackingListModal({
               </svg>
             </div>
             <p className="text-sm leading-5 text-slate-600">
-              We've selected all the suggested items for you.
-              Uncheck anything you don't need. Only selected
-              items will be added to your checklist.
+              {message}
+              Uncheck anything you don't need. Only selected items will be added
+              to your checklist.
             </p>
           </div>
         </div>
@@ -126,7 +124,7 @@ export default function GeneratedPackingListModal({
           <button
             type="button"
             onClick={toggleAll}
-            className="text-sm font-semibold text-indigo-700 hover:text-indigo-900 focus:outline-none focus:underline"
+            className="text-sm font-semibold text-gray-700 hover:text-gray-900 focus:outline-none focus:underline"
           >
             {allSelected ? "Unselect all" : "Select all"}
           </button>
@@ -154,14 +152,12 @@ export default function GeneratedPackingListModal({
                       type="checkbox"
                       checked={checked}
                       onChange={() => toggleItem(item.id)}
-                      className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer rounded border-slate-300 accent-indigo-600 focus:ring-2 focus:ring-indigo-500"
+                      className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer rounded border-slate-300 accent-gray-600 focus:ring-2 focus:ring-gray-500"
                     />
 
                     <span
                       className={`text-sm leading-5 ${
-                        checked
-                          ? "text-slate-800"
-                          : "text-slate-500"
+                        checked ? "text-slate-800" : "text-slate-500"
                       }`}
                     >
                       {item.name}
