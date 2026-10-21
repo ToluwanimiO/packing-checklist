@@ -108,7 +108,7 @@ export default function GeneratedPackingListModal({
               </svg>
             </div>
             <p className="text-sm leading-5 text-slate-600">
-              {message}
+              {message} &nbsp;
               Uncheck anything you don't need. Only selected items will be added
               to your checklist.
             </p>
