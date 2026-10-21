@@ -95,25 +95,10 @@ async function handleGeneratePackingList() {
 
   try {
     const result = await generatePackingList(tripDescription);
-    console.log(result);
-    onAddItem(trip.id, "itemName");
-    // comeback - set string
     setGeneratedItems(result.items);
     setShowReviewModal(true);
     setTripDescription("")
     setShowGenerator(false)
-    // setAppData((previous) => ({
-    //   ...previous,
-    //   trips: previous.trips.map((trip) =>
-    //     trip.id === activeTripId
-    //       ? {
-    //           ...trip,
-    //           items: result.items,
-    //         }
-    //       : trip
-    //   ),
-    // }));
-
     setGenerationMessage(result.message);
   } catch (error) {
     setGenerationMessage(
@@ -511,7 +496,6 @@ async function handleGeneratePackingList() {
     items={generatedItems}
     onClose={() => setShowReviewModal(false)}
     onSave={(selectedItems) => {
-      console.log("Selected items to add:", selectedItems);
       onAddItems(trip.id, selectedItems);
       // TODO: Add selectedItems to your existing trip checklist.
       setShowReviewModal(false);
