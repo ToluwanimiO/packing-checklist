@@ -12,7 +12,7 @@ export default defineConfig({
       includeAssets: ["pwa-192.png", "pwa-512.png"],
       manifest: {
         name: "Packing Checklist",
-        short_name: "Packing",
+        short_name: "Packing Checklist",
         description:
           "Create trip packing checklists and build a reusable default packing list.",
         theme_color: "#0f172a",
